@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Para mi Jamelita 💗</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sky-1:#ffe0ee;
+    --sky-2:#ffd0e6;
+    --sky-3:#ffc2de;
+    --card-bg:#fffaf7;
+    --card-bg-soft:#fff1f6;
+    --fuchsia:#ff4fa3;
+    --pink:#ff8fc7;
+    --red-soft:#ff6f8f;
+    --text-main:#7a4a5c;
+    --text-soft:#a9748a;
+    --shadow:rgba(255, 111, 143, 0.28);
+  }
+
+  *{box-sizing:border-box;}
+
+  html,body{
+    margin:0;
+    padding:0;
+    min-height:100%;
+    overflow-x:hidden;
+  }
+
+  body{
+    font-family:'Quicksand', sans-serif;
+    color:var(--text-main);
+    min-height:100dvh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:24px 14px;
+    background:linear-gradient(160deg, var(--sky-1) 0%, var(--sky-2) 55%, var(--sky-3) 100%);
+    position:relative;
+  }
+
+  /* ---------- Fondo: estrellas y nubes ---------- */
+  .sky{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+    z-index:0;
+  }
+
+  .star{
+    position:absolute;
+    width:4px;
+    height:4px;
+    background:#fff;
+    border-radius:50%;
+    opacity:0.6;
+    box-shadow:0 0 6px 1px rgba(255,255,255,0.9);
+    animation:twinkle 3.2s ease-in-out infinite;
+  }
+
+  @keyframes twinkle{
+    0%,100%{opacity:0.15; transform:scale(0.8);}
+    50%{opacity:0.9; transform:scale(1.2);}
+  }
+
+  .cloud{
+    position:absolute;
+    background:#fff;
+    border-radius:100px;
+    opacity:0.55;
+    filter:blur(0.5px);
+    animation:drift 60s linear infinite;
+  }
+
+  .cloud::before, .cloud::after{
+    content:"";
+    position:absolute;
+    background:#fff;
+    border-radius:100px;
+  }
+
+  @keyframes drift{
+    from{transform:translateX(-10vw);}
+    to{transform:translateX(110vw);}
+  }
+
+  /* ---------- Tarjeta principal ---------- */
+  .card-wrap{
+    position:relative;
+    z-index:1;
+    width:100%;
+    max-width:430px;
+  }
+
+  .card{
+    background:linear-gradient(180deg, var(--card-bg) 0%, var(--card-bg-soft) 100%);
+    border-radius:32px;
+    box-shadow:0 20px 45px var(--shadow), 0 2px 8px rgba(255,111,143,0.15);
+    padding:30px 24px 22px;
+    position:relative;
+    min-height:520px;
+    display:flex;
+    flex-direction:column;
+  }
+
+  .card::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:32px;
+    border:1.5px solid rgba(255,255,255,0.6);
+    pointer-events:none;
+  }
+
+  .dots{
+    display:flex;
+    justify-content:center;
+    gap:6px;
+    margin-bottom:14px;
+  }
+
+  .dot{
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:#ffd3e4;
+    transition:all .3s ease;
+  }
+
+  .dot.active{
+    background:var(--fuchsia);
+    width:16px;
+    border-radius:4px;
+  }
+
+  .sheet{
+    flex:1;
+    display:none;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    animation:fadeIn .55s ease;
+    min-height:340px;
+    justify-content:center;
+    gap:10px;
+  }
+
+  .sheet.visible{
+    display:flex;
+  }
+
+  .sheet.fading-out{
+    animation:fadeOut .35s ease forwards;
+  }
+
+  @keyframes fadeIn{
+    from{opacity:0; transform:translateY(8px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+
+  @keyframes fadeOut{
+    from{opacity:1; transform:translateY(0);}
+    to{opacity:0; transform:translateY(-8px);}
+  }
+
+  h1,h2{
+    font-family:'Dancing Script', cursive;
+    color:var(--fuchsia);
+    margin:0 0 6px;
+    line-height:1.15;
+  }
+
+  h1{
+    font-size:3rem;
+  }
+
+  h2{
+    font-size:2.1rem;
+  }
+
+  p{
+    font-size:1rem;
+    line-height:1.65;
+    color:var(--text-main);
+    margin:4px 0;
+  }
+
+  .soft{
+    color:var(--text-soft);
+    font-size:0.95rem;
+  }
+
+  /* ---------- Corazón latiendo (Hoja 1) ---------- */
+  .heart-beat{
+    font-size:4rem;
+    animation:beat 1.15s ease-in-out infinite;
+    filter:drop-shadow(0 6px 10px var(--shadow));
+  }
+
+  @keyframes beat{
+    0%, 100%{transform:scale(1);}
+    15%{transform:scale(1.18);}
+    30%{transform:scale(0.96);}
+    45%{transform:scale(1.12);}
+    60%{transform:scale(1);}
+  }
+
+  .start-btn{
+    margin-top:14px;
+    background:var(--fuchsia);
+    color:#fff;
+    border:none;
+    padding:12px 26px;
+    border-radius:30px;
+    font-family:'Quicksand', sans-serif;
+    font-weight:700;
+    font-size:0.95rem;
+    box-shadow:0 8px 18px var(--shadow);
+    cursor:pointer;
+  }
+
+  /* ---------- Árbol de corazones (Hoja 2) ---------- */
+  .tree-wrap{
+    position:relative;
+    width:100%;
+    height:170px;
+    margin-top:2px;
+  }
+
+  .bear-char{
+    position:absolute;
+    left:50%;
+    bottom:-6px;
+    width:104px;
+    z-index:3;
+    transform-origin:50% 96%;
+    animation:bearSway 2.3s ease-in-out infinite;
+    filter:drop-shadow(0 6px 10px rgba(255,111,143,0.35));
+  }
+
+  @keyframes bearSway{
+    0%,100%{transform:translateX(-50%) rotate(-4deg);}
+    50%{transform:translateX(-50%) rotate(5deg);}
+  }
+
+  .leaves-layer{
+    position:absolute;
+    inset:0;
+    overflow:visible;
+    pointer-events:none;
+    z-index:2;
+  }
+
+  .falling-heart{
+    position:absolute;
+    top:-10px;
+    font-size:0.9rem;
+    opacity:0.9;
+    animation:fallDown linear forwards;
+  }
+
+  @keyframes fallDown{
+    0%{transform:translateY(0) translateX(0) rotate(0deg); opacity:0;}
+    8%{opacity:0.95;}
+    100%{transform:translateY(190px) translateX(var(--drift, 12px)) rotate(200deg); opacity:0;}
+  }
+
+  .tree-svg{
+    width:100%;
+    height:100%;
+    position:relative;
+    z-index:1;
+  }
+
+  /* ---------- Contador (Hoja 2) ---------- */
+  .counter{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:8px;
+    margin-top:8px;
+  }
+
+  .time-box{
+    background:#fff;
+    border-radius:16px;
+    padding:10px 6px;
+    width:64px;
+    box-shadow:0 6px 14px rgba(255,143,199,0.25);
+  }
+
+  .time-box .num{
+    font-size:1.5rem;
+    font-weight:700;
+    color:var(--fuchsia);
+    font-family:'Quicksand', sans-serif;
+  }
+
+  .time-box .label{
+    font-size:0.62rem;
+    text-transform:lowercase;
+    color:var(--text-soft);
+    letter-spacing:0.02em;
+  }
+
+  /* ---------- Calendario (Hoja 3) ---------- */
+  .calendar{
+    background:#fff;
+    border-radius:20px;
+    padding:14px 12px;
+    box-shadow:0 8px 20px rgba(255,143,199,0.25);
+    width:100%;
+    max-width:280px;
+    margin:6px auto 2px;
+  }
+
+  .cal-month{
+    font-family:'Dancing Script', cursive;
+    font-size:1.4rem;
+    color:var(--fuchsia);
+    margin-bottom:8px;
+  }
+
+  .cal-grid{
+    display:grid;
+    grid-template-columns:repeat(7, 1fr);
+    gap:4px;
+  }
+
+  .cal-dayname{
+    font-size:0.62rem;
+    color:var(--text-soft);
+    font-weight:700;
+  }
+
+  .cal-cell{
+    font-size:0.72rem;
+    padding:5px 0;
+    border-radius:8px;
+    color:var(--text-main);
+  }
+
+  .cal-cell.muted{
+    color:#e3c3d1;
+  }
+
+  .cal-cell.highlight{
+    background:var(--fuchsia);
+    color:#fff;
+    font-weight:700;
+    position:relative;
+    animation:pulse-soft 2s ease-in-out infinite;
+  }
+
+  /* ---------- Candado corazón L J (Hoja 5) ---------- */
+  .lock-badge{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    margin-bottom:4px;
+  }
+
+  .lock-badge .letter{
+    font-family:'Dancing Script', cursive;
+    font-size:2.2rem;
+    color:var(--fuchsia);
+  }
+
+  .lock-heart{
+    position:relative;
+    width:54px;
+    height:48px;
+  }
+
+  .lock-heart svg{
+    width:100%;
+    height:100%;
+    filter:drop-shadow(0 4px 8px var(--shadow));
+  }
+
+  /* ---------- Galería apilada (Hoja 6) ---------- */
+  .stack{
+    position:relative;
+    width:190px;
+    height:190px;
+    margin:6px auto 4px;
+  }
+
+  .stack img, .stack .ph{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:20px;
+    border:5px solid #fff;
+    box-shadow:0 10px 20px rgba(255,111,143,0.3);
+    transition:transform 1.4s ease, opacity 1.4s ease;
+  }
+
+  .ph{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg, #ffd7ea, #ffc0dd);
+    font-size:2.2rem;
+    color:#fff;
+  }
+
+  .fe-title{
+    font-family:'Dancing Script', cursive;
+    color:var(--fuchsia);
+    font-size:1.65rem;
+    margin:2px 0 6px;
+  }
+
+  /* ---------- Razones (Hoja 7) ---------- */
+  .reasons{
+    list-style:none;
+    padding:0;
+    margin:6px 0 10px;
+    text-align:left;
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+
+  .reasons li{
+    display:flex;
+    gap:10px;
+    font-size:0.9rem;
+    line-height:1.5;
+    align-items:flex-start;
+  }
+
+  .reasons .icon{
+    flex-shrink:0;
+    font-size:1.05rem;
+  }
+
+  .final-msg{
+    margin-top:6px;
+    font-family:'Dancing Script', cursive;
+    font-size:1.6rem;
+    color:var(--red-soft);
+    animation:pulse-soft 2.4s ease-in-out infinite;
+  }
+
+  @keyframes pulse-soft{
+    0%,100%{transform:scale(1); opacity:1;}
+    50%{transform:scale(1.05); opacity:0.85;}
+  }
+
+  /* ---------- Frases flotantes (Hoja 8) ---------- */
+  .float-stage{
+    position:relative;
+    width:100%;
+    min-height:300px;
+    flex:1;
+  }
+
+  .floating-phrase{
+    position:absolute;
+    font-family:'Dancing Script', cursive;
+    font-size:1.4rem;
+    color:var(--fuchsia);
+    opacity:0;
+    white-space:nowrap;
+    animation:floatPhrase 4.5s ease-in-out forwards;
+    pointer-events:none;
+  }
+
+  @keyframes floatPhrase{
+    0%{opacity:0; transform:translateY(10px) scale(0.9);}
+    15%{opacity:1; transform:translateY(0) scale(1);}
+    80%{opacity:1;}
+    100%{opacity:0; transform:translateY(-14px) scale(1.03);}
+  }
+
+  /* ---------- Navegación ---------- */
+  .nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:18px;
+    gap:10px;
+  }
+
+  .nav-btn{
+    border:none;
+    border-radius:24px;
+    padding:11px 22px;
+    font-family:'Quicksand', sans-serif;
+    font-weight:700;
+    font-size:0.9rem;
+    cursor:pointer;
+    transition:transform .15s ease, opacity .2s ease;
+  }
+
+  .nav-btn:active{
+    transform:scale(0.95);
+  }
+
+  .nav-btn.next{
+    background:var(--fuchsia);
+    color:#fff;
+    box-shadow:0 8px 16px var(--shadow);
+  }
+
+  .nav-btn.back{
+    background:transparent;
+    color:var(--text-soft);
+    border:2px solid #ffd3e4;
+  }
+
+  .nav-btn:disabled{
+    opacity:0;
+    pointer-events:none;
+  }
+
+  /* ---------- Brillitos en el borde de la tarjeta ---------- */
+  .sparkle-layer{
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    z-index:5;
+  }
+
+  .sparkle{
+    position:absolute;
+    font-size:1.05rem;
+    opacity:0;
+    animation:sparkleTwinkle 2.4s ease-in-out infinite;
+  }
+
+  .s1{top:3%; left:6%; animation-delay:0s;}
+  .s2{top:6%; right:7%; animation-delay:.35s; font-size:0.85rem;}
+  .s3{top:38%; left:1%; animation-delay:.7s; font-size:0.9rem;}
+  .s4{top:44%; right:2%; animation-delay:1.05s;}
+  .s5{bottom:24%; left:4%; animation-delay:1.4s; font-size:0.8rem;}
+  .s6{bottom:20%; right:5%; animation-delay:1.75s;}
+  .s7{top:68%; left:10%; animation-delay:.55s; font-size:0.75rem;}
+  .s8{top:74%; right:12%; animation-delay:.9s; font-size:0.9rem;}
+
+  @keyframes sparkleTwinkle{
+    0%,100%{opacity:0; transform:scale(0.4) rotate(0deg);}
+    50%{opacity:1; transform:scale(1.3) rotate(25deg);}
+  }
+
+  /* ---------- Confeti al cambiar de hoja / explosión final ---------- */
+  .confetti-piece{
+    position:fixed;
+    top:0;
+    left:0;
+    pointer-events:none;
+    z-index:9998;
+    animation:confettiFly ease-out forwards;
+  }
+
+  @keyframes confettiFly{
+    0%{opacity:0; transform:translate(-50%,-50%) scale(0.4) rotate(0deg);}
+    14%{opacity:1;}
+    100%{opacity:0; transform:translate(calc(-50% + var(--cx,0px)), calc(-50% + var(--cy,0px))) scale(1) rotate(var(--crot,180deg));}
+  }
+
+  /* ---------- Corazón de portada al tocar ---------- */
+  .heart-beat.tapped{
+    animation:heartTapPop .55s ease;
+  }
+
+  @keyframes heartTapPop{
+    0%{transform:scale(1);}
+    35%{transform:scale(1.6);}
+    60%{transform:scale(1.15);}
+    100%{transform:scale(1);}
+  }
+
+  /* ---------- Fotos con lightbox ---------- */
+  .stack img{ cursor:pointer; }
+
+  .lightbox{
+    position:fixed;
+    inset:0;
+    background:rgba(122,74,92,0.6);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:10000;
+    padding:20px;
+    animation:fadeIn .25s ease;
+  }
+
+  .lightbox.visible{
+    display:flex;
+  }
+
+  .lightbox img{
+    max-width:90vw;
+    max-height:78vh;
+    border-radius:20px;
+    border:6px solid #fff;
+    box-shadow:0 20px 44px rgba(0,0,0,0.35);
+    animation:popIn .3s ease;
+  }
+
+  @keyframes popIn{
+    0%{transform:scale(0.7); opacity:0;}
+    100%{transform:scale(1); opacity:1;}
+  }
+
+  /* ---------- Corazón al hacer clic ---------- */
+  .click-heart{
+    position:fixed;
+    top:0;
+    left:0;
+    pointer-events:none;
+    z-index:9999;
+    width:26px;
+    height:24px;
+    animation:clickHeartPop 900ms ease-out forwards;
+  }
+
+  .click-heart svg{
+    width:100%;
+    height:100%;
+    filter:drop-shadow(0 3px 6px rgba(255,111,143,0.45));
+  }
+
+  @keyframes clickHeartPop{
+    0%{opacity:0; transform:translate(-50%,-50%) scale(0.3) translateY(0) rotate(var(--rot,0deg));}
+    18%{opacity:1; transform:translate(-50%,-50%) scale(1.05) translateY(-6px) rotate(var(--rot,0deg));}
+    100%{opacity:0; transform:translate(calc(-50% + var(--dx,0px)), -50%) scale(0.9) translateY(-52px) rotate(var(--rot,0deg));}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important;}
+  }
+</style>
+</head>
+<body>
+
+<div class="sky" id="sky"></div>
+
+<div class="card-wrap">
+  <div class="card">
+    <div class="sparkle-layer">
+      <span class="sparkle s1">✨</span>
+      <span class="sparkle s2">💫</span>
+      <span class="sparkle s3">✨</span>
+      <span class="sparkle s4">💫</span>
+      <span class="sparkle s5">✨</span>
+      <span class="sparkle s6">💫</span>
+      <span class="sparkle s7">✨</span>
+      <span class="sparkle s8">💫</span>
+    </div>
+
+    <div class="dots" id="dots"></div>
+
+    <!-- Hoja 1: Portada -->
+    <section class="sheet visible" data-sheet="0">
+      <h1>Jamelita</h1>
+      <div class="heart-beat" id="portadaHeart">💗</div>
+      <p class="soft">un pequeño rincón hecho para ti</p>
+      <button class="start-btn" id="startBtn">Abrir 💌</button>
+    </section>
+
+    <!-- Hoja 2: Contador -->
+    <section class="sheet" data-sheet="1">
+      <p>te amo desde esa vez que cruzamos miradas hace...</p>
+      <div class="tree-wrap" id="treeWrap">
+        <div class="leaves-layer" id="leavesLayer"></div>
+        <img src="osito.png" alt="osito con una rosa" class="bear-char">
+      </div>
+      <div class="counter" id="counter">
+        <div class="time-box"><div class="num" id="c-days">0</div><div class="label">días</div></div>
+        <div class="time-box"><div class="num" id="c-hours">0</div><div class="label">horas</div></div>
+        <div class="time-box"><div class="num" id="c-mins">0</div><div class="label">min</div></div>
+        <div class="time-box"><div class="num" id="c-secs">0</div><div class="label">seg</div></div>
+      </div>
+    </section>
+
+    <!-- Hoja 3: La fecha -->
+    <section class="sheet" data-sheet="2">
+      <p>nuestro amor fue tan espontáneo y fascinante que no recordamos cómo nos convertimos en unos enamorados tan locos, pero acordando que el nuestro sería un día como hoy</p>
+      <div class="calendar">
+        <div class="cal-month">septiembre 2026</div>
+        <div class="cal-grid">
+          <div class="cal-dayname">L</div><div class="cal-dayname">M</div><div class="cal-dayname">M</div><div class="cal-dayname">J</div><div class="cal-dayname">V</div><div class="cal-dayname">S</div><div class="cal-dayname">D</div>
+          <div class="cal-cell muted">31</div><div class="cal-cell">1</div><div class="cal-cell">2</div><div class="cal-cell">3</div><div class="cal-cell">4</div><div class="cal-cell">5</div><div class="cal-cell">6</div>
+          <div class="cal-cell highlight">7 💗</div><div class="cal-cell">8</div><div class="cal-cell">9</div><div class="cal-cell">10</div><div class="cal-cell">11</div><div class="cal-cell">12</div><div class="cal-cell">13</div>
+          <div class="cal-cell">14</div><div class="cal-cell">15</div><div class="cal-cell">16</div><div class="cal-cell">17</div><div class="cal-cell">18</div><div class="cal-cell">19</div><div class="cal-cell">20</div>
+          <div class="cal-cell">21</div><div class="cal-cell">22</div><div class="cal-cell">23</div><div class="cal-cell">24</div><div class="cal-cell">25</div><div class="cal-cell">26</div><div class="cal-cell">27</div>
+          <div class="cal-cell">28</div><div class="cal-cell">29</div><div class="cal-cell">30</div><div class="cal-cell muted">1</div><div class="cal-cell muted">2</div><div class="cal-cell muted">3</div><div class="cal-cell muted">4</div>
+        </div>
+      </div>
+      <p class="soft" style="font-size:0.85rem;">un día tan fascinante como hoy, <strong style="color:var(--fuchsia);">07 de septiembre</strong>.</p>
+    </section>
+
+    <!-- Hoja 4: Dos años juntos -->
+    <section class="sheet" data-sheet="3">
+      <h2>Dos años juntos</h2>
+      <p>Han sido 730 días de risas, aventuras y un amor que no deja de crecer. Contigo cada día es más bonito que el anterior y eres mi lugar favorito en el mundo. ¡Gracias por hacerme tan feliz, mi amor!</p>
+    </section>
+
+    <!-- Hoja 5: Nuestra historia -->
+    <section class="sheet" data-sheet="4">
+      <div class="lock-badge">
+        <span class="letter">P</span>
+        <div class="lock-heart">
+          <svg viewBox="0 0 64 58" xmlns="http://www.w3.org/2000/svg">
+            <path d="M32 54 C10 40 2 27 2 16 C2 6 10 0 18 0 C24 0 29 3 32 9 C35 3 40 0 46 0 C54 0 62 6 62 16 C62 27 54 40 32 54 Z" fill="#ff4fa3"/>
+            <circle cx="32" cy="24" r="6.5" fill="#fffaf7"/>
+            <rect x="29.5" y="27" width="5" height="8" rx="2" fill="#fffaf7"/>
+          </svg>
+        </div>
+        <span class="letter">J</span>
+      </div>
+      <h2 style="font-size:1.7rem;">Nuestra Historia</h2>
+      <p>Todo empezó una noche donde quizás fue el destino o la casualidad la que hizo que nos cruzáramos por una calle solitaria. Intercambiamos miradas, algo en ti me causó curiosidad y fue tan bonito que dejé el orgullo de lado y te escribí. Sin pensarlo, y quizás sin quererlo, tuvimos una conexión especial que nos ayudó a mejorar lo nuestro. Vaya, aquel primer beso que se quedó grabado en mi corazón, nuestro primer paseo agarrados de las manos, quizás con un poco de timidez, porque a veces la mente duda de lo que el corazón ya decidió. Ese fue el inicio de todas las historias que vivimos, las aventuras que pasamos, las incontables historias que vivimos y seguiremos viviendo. Quizás pasamos malos momentos, y me siento agradecido de que nunca hayan sido un punto final en el hermoso momento que estamos viviendo.</p>
+    </section>
+
+    <!-- Hoja 6: Frontend/Backend + fotos -->
+    <section class="sheet" data-sheet="5">
+      <p class="fe-title">sin ti mi Back End no tendría su front end</p>
+      <div class="stack" id="photoStack">
+        <div class="ph">💗</div>
+        <img src="foto1.jpg" alt="" onerror="this.style.display='none'">
+        <img src="foto2.jpg" alt="" onerror="this.style.display='none'">
+        <img src="foto3.jpg" alt="" onerror="this.style.display='none'">
+        <img src="foto4.jpg" alt="" onerror="this.style.display='none'">
+        <img src="foto5.jpg" alt="" onerror="this.style.display='none'">
+        <img src="foto6.jpg" alt="" onerror="this.style.display='none'">
+        <img src="foto7.jpg" alt="" onerror="this.style.display='none'">
+        <img src="foto8.jpg" alt="" onerror="this.style.display='none'">
+        <img src="foto9.jpg" alt="" onerror="this.style.display='none'">
+        <img src="foto10.jpg" alt="" onerror="this.style.display='none'">
+        <img src="foto11.jpg" alt="" onerror="this.style.display='none'">
+        <img src="foto12.jpg" alt="" onerror="this.style.display='none'">
+        <img src="foto13.jpg" alt="" onerror="this.style.display='none'">
+        <img src="foto14.jpg" alt="" onerror="this.style.display='none'">
+        <img src="foto15.jpg" alt="" onerror="this.style.display='none'">
+      </div>
+      <p class="soft" style="font-size:0.8rem;">deslizando por sus 15 recuerdos juntos 💗</p>
+      <!-- Canción elegida: "Lover" - Taylor Swift. Guarda el mp3 como musica.mp3 en esta misma carpeta -->
+      <audio id="bg-music" src="musica.mp3" loop></audio>
+    </section>
+
+    <!-- Hoja 7: Razones -->
+    <section class="sheet" data-sheet="6">
+      <h2 style="font-size:1.7rem;">Razones por las que te amo</h2>
+      <ul class="reasons">
+        <li><span class="icon">⭐</span><span>Tienes una sonrisa tan hermosa y tierna que alegra mis días tristes y me motiva a no rendirme.</span></li>
+        <li><span class="icon">🐾</span><span>Cada momento, aunque sea pequeño, se vuelve algo especial, convirtiéndose en momentos inolvidables.</span></li>
+        <li><span class="icon">⭐</span><span>A pesar de ser alguien común, siempre viste lo bueno de mí; con eso me quieres y me haces sentir tan especial.</span></li>
+        <li><span class="icon">🐾</span><span>Me aceptas como soy realmente y aun así decidiste quedarte; contigo no tengo que fingir y me siento libre.</span></li>
+        <li><span class="icon">⭐</span><span>Te convertiste en mi motivación para seguir esforzándome y cumplir todas las promesas que te hice.</span></li>
+      </ul>
+      <div class="final-msg">te amo mucho niñita bonita</div>
+    </section>
+
+    <!-- Hoja 8: Lo que siento -->
+    <section class="sheet" data-sheet="7">
+      <h2 style="font-size:1.7rem;">LO QUE SIENTO POR TI</h2>
+      <div class="float-stage" id="floatStage"></div>
+    </section>
+
+    <div class="nav" id="navBar" style="display:none;">
+      <button class="nav-btn back" id="backBtn">Atrás</button>
+      <button class="nav-btn next" id="nextBtn">Siguiente</button>
+    </div>
+  </div>
+</div>
+
+<div class="lightbox" id="lightbox">
+  <img id="lightboxImg" src="" alt="foto ampliada">
+</div>
+
+<script>
+/* ---------------- Fondo animado: estrellas y nubes ---------------- */
+(function initSky(){
+  const sky = document.getElementById('sky');
+  for(let i=0;i<28;i++){
+    const s = document.createElement('div');
+    s.className='star';
+    s.style.left = Math.random()*100+'vw';
+    s.style.top = Math.random()*100+'vh';
+    s.style.animationDelay = (Math.random()*3)+'s';
+    s.style.animationDuration = (2.4+Math.random()*2.4)+'s';
+    sky.appendChild(s);
+  }
+  const cloudSizes = [ [120,44,20], [90,34,35], [150,52,70], [100,38,15] ];
+  cloudSizes.forEach((c,i)=>{
+    const cl = document.createElement('div');
+    cl.className='cloud';
+    const [w,h,top] = c;
+    cl.style.width=w+'px';
+    cl.style.height=h+'px';
+    cl.style.top=top+'vh';
+    cl.style.animationDuration=(50+i*18)+'s';
+    cl.style.animationDelay=(-i*14)+'s';
+    cl.style.setProperty('--w', w+'px');
+    sky.appendChild(cl);
+  });
+})();
+
+/* ---------------- Navegación SPA ---------------- */
+const sheets = Array.from(document.querySelectorAll('.sheet'));
+const dotsWrap = document.getElementById('dots');
+let current = 0;
+
+sheets.forEach((_, i)=>{
+  const d = document.createElement('div');
+  d.className = 'dot' + (i===0 ? ' active' : '');
+  dotsWrap.appendChild(d);
+});
+const dotEls = Array.from(dotsWrap.children);
+
+const backBtn = document.getElementById('backBtn');
+const nextBtn = document.getElementById('nextBtn');
+const navBar = document.getElementById('navBar');
+
+function goTo(index){
+  if(index < 0 || index >= sheets.length) return;
+  const currentSheet = sheets[current];
+  currentSheet.classList.add('fading-out');
+  setTimeout(()=>{
+    currentSheet.classList.remove('visible','fading-out');
+    current = index;
+    sheets[current].classList.add('visible');
+    dotEls.forEach((d,i)=>d.classList.toggle('active', i===current));
+    navBar.style.display = current === 0 ? 'none' : 'flex';
+    backBtn.disabled = current === 0;
+    nextBtn.textContent = current === sheets.length-1 ? 'Fin 💗' : 'Siguiente';
+    if(current === sheets.length-1) nextBtn.disabled = true;
+    else nextBtn.disabled = false;
+    if(current === 7) startFloatingPhrases();
+    else stopFloatingPhrases();
+    if(current === 1) startLeafFall();
+    else stopLeafFall();
+    const c = cardCenter();
+    confettiBurst(c.x, c.y, 16, false);
+    if(current === sheets.length-1) heartExplosion();
+  }, 320);
+}
+
+backBtn.addEventListener('click', ()=>goTo(current-1));
+nextBtn.addEventListener('click', ()=>goTo(current+1));
+document.getElementById('startBtn').addEventListener('click', ()=>goTo(1));
+backBtn.disabled = true;
+
+/* ---------------- Contador de tiempo ---------------- */
+const startDate = new Date(2024, 4, 31, 0, 37, 0); // 31 mayo 2024, 00:37
+
+function pad(n){ return String(n).padStart(2,'0'); }
+
+function updateCounter(){
+  const now = new Date();
+  let diff = Math.max(0, now - startDate);
+
+  const days = Math.floor(diff / 86400000);
+  diff -= days * 86400000;
+  const hours = Math.floor(diff / 3600000);
+  diff -= hours * 3600000;
+  const mins = Math.floor(diff / 60000);
+  diff -= mins * 60000;
+  const secs = Math.floor(diff / 1000);
+
+  document.getElementById('c-days').textContent = days;
+  document.getElementById('c-hours').textContent = pad(hours);
+  document.getElementById('c-mins').textContent = pad(mins);
+  document.getElementById('c-secs').textContent = pad(secs);
+}
+updateCounter();
+setInterval(updateCounter, 1000);
+
+/* ---------------- Confeti de corazones ---------------- */
+const confettiEmojis = ['💗','💕','✨','⭐','💖'];
+
+function confettiBurst(x, y, count, big){
+  for(let i=0;i<count;i++){
+    const el = document.createElement('div');
+    el.className = 'confetti-piece';
+    el.textContent = confettiEmojis[Math.floor(Math.random()*confettiEmojis.length)];
+    el.style.left = x + 'px';
+    el.style.top = y + 'px';
+    const angle = Math.random()*Math.PI*2;
+    const dist = big ? (90 + Math.random()*180) : (45 + Math.random()*75);
+    el.style.setProperty('--cx', Math.cos(angle)*dist + 'px');
+    el.style.setProperty('--cy', Math.sin(angle)*dist + 'px');
+    el.style.setProperty('--crot', (Math.random()*360) + 'deg');
+    el.style.fontSize = (big ? (1.2+Math.random()*1) : (0.85+Math.random()*0.6)) + 'rem';
+    el.style.animationDuration = (0.9 + Math.random()*0.7) + 's';
+    document.body.appendChild(el);
+    setTimeout(()=>el.remove(), 1700);
+  }
+}
+
+function cardCenter(){
+  const card = document.querySelector('.card');
+  const r = card.getBoundingClientRect();
+  return { x: r.left + r.width/2, y: r.top + r.height/2 };
+}
+
+function heartExplosion(){
+  const c = cardCenter();
+  confettiBurst(c.x, c.y, 50, true);
+  setTimeout(()=>confettiBurst(c.x, c.y, 30, true), 220);
+  setTimeout(()=>confettiBurst(c.x, c.y, 20, true), 440);
+}
+
+/* ---------------- Corazón de portada reactivo ---------------- */
+const portadaHeart = document.getElementById('portadaHeart');
+portadaHeart.addEventListener('click', ()=>{
+  portadaHeart.classList.add('tapped');
+  setTimeout(()=>portadaHeart.classList.remove('tapped'), 550);
+  const r = portadaHeart.getBoundingClientRect();
+  confettiBurst(r.left + r.width/2, r.top + r.height/2, 12, false);
+});
+
+/* ---------------- Lightbox de fotos ---------------- */
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightboxImg');
+document.getElementById('photoStack').addEventListener('click', (e)=>{
+  if(e.target.tagName === 'IMG'){
+    lightboxImg.src = e.target.src;
+    lightbox.classList.add('visible');
+  }
+});
+lightbox.addEventListener('click', ()=>{
+  lightbox.classList.remove('visible');
+});
+
+/* ---------------- Corazón al hacer clic/tocar ---------------- */
+const clickHeartColors = ['#ff4fa3','#ff8fc7','#ff6f8f','#ffb37a'];
+
+function makeClickHeart(x, y, delay, size, color, dx, rot){
+  setTimeout(()=>{
+    const wrap = document.createElement('div');
+    wrap.className = 'click-heart';
+    wrap.style.left = x + 'px';
+    wrap.style.top = y + 'px';
+    wrap.style.width = size + 'px';
+    wrap.style.height = (size*0.92) + 'px';
+    wrap.style.setProperty('--dx', dx + 'px');
+    wrap.style.setProperty('--rot', rot + 'deg');
+    wrap.innerHTML = `<svg viewBox="0 0 32 29" xmlns="http://www.w3.org/2000/svg">
+      <path d="M16 27 C4 19 0 12 0 7.5 C0 3 4 0 8.5 0 C12 0 14.5 1.5 16 4.5 C17.5 1.5 20 0 23.5 0 C28 0 32 3 32 7.5 C32 12 28 19 16 27 Z" fill="${color}"/>
+    </svg>`;
+    document.body.appendChild(wrap);
+    setTimeout(()=>wrap.remove(), 950);
+  }, delay);
+}
+
+document.addEventListener('click', (e)=>{
+  const count = 2 + Math.floor(Math.random()*2);
+  for(let i=0;i<count;i++){
+    const size = 16 + Math.random()*14;
+    const color = clickHeartColors[Math.floor(Math.random()*clickHeartColors.length)];
+    const dx = (Math.random()*46-23);
+    const rot = (Math.random()*40-20);
+    makeClickHeart(e.clientX, e.clientY, i*70, size, color, dx, rot);
+  }
+});
+
+let leafInterval = null;
+function spawnLeaf(){
+  const layer = document.getElementById('leavesLayer');
+  if(!layer) return;
+  const leaf = document.createElement('div');
+  leaf.className = 'falling-heart';
+  const hearts = ['💗','💕','💖'];
+  leaf.textContent = hearts[Math.floor(Math.random()*hearts.length)];
+  const startX = 5 + Math.random()*90;
+  leaf.style.left = startX + '%';
+  leaf.style.fontSize = (0.8 + Math.random()*0.7) + 'rem';
+  leaf.style.setProperty('--drift', (Math.random()*40-20)+'px');
+  leaf.style.animationDuration = (3 + Math.random()*2.5) + 's';
+  layer.appendChild(leaf);
+  setTimeout(()=>leaf.remove(), 6000);
+}
+function startLeafFall(){
+  if(leafInterval) return;
+  spawnLeaf();
+  leafInterval = setInterval(spawnLeaf, 400);
+}
+function stopLeafFall(){
+  clearInterval(leafInterval);
+  leafInterval = null;
+}
+
+/* ---------------- Galería apilada ---------------- */
+(function initStack(){
+  const stack = document.getElementById('photoStack');
+  function cycle(){
+    const children = Array.from(stack.children);
+    children.forEach((el, i)=>{
+      const offset = i * 6;
+      el.style.transform = `rotate(${(i%2===0?1:-1)*offset*0.6}deg) translate(${offset*0.4}px, ${offset*0.4}px)`;
+      el.style.zIndex = children.length - i;
+    });
+    stack.appendChild(children[0]);
+  }
+  cycle();
+  setInterval(cycle, 2600);
+})();
+
+/* ---------------- Frases flotantes (Hoja 8) ---------------- */
+const phrases = [
+  "te amo mucho niñita bonita",
+  "niñita con bonitos cachetitos",
+  "mucho mucho mucho amor",
+  "siempre te quiero dar muchos besitos",
+  "princesita bonita",
+  "eres mi persona favorita",
+  "contigo el tiempo vuela",
+  "mi corazón es tuyo",
+  "gracias por existir en mi vida",
+  "te quiero hoy, mañana y siempre",
+  "eres mi lugar favorito",
+  "amo tu sonrisa"
+];
+let floatInterval = null;
+
+function spawnPhrase(){
+  const stage = document.getElementById('floatStage');
+  if(!stage) return;
+  const p = document.createElement('div');
+  p.className = 'floating-phrase';
+  p.textContent = phrases[Math.floor(Math.random()*phrases.length)];
+  const maxLeft = Math.max(stage.clientWidth - 160, 10);
+  const maxTop = Math.max(stage.clientHeight - 40, 10);
+  p.style.left = Math.random()*maxLeft + 'px';
+  p.style.top = Math.random()*maxTop + 'px';
+  stage.appendChild(p);
+  setTimeout(()=>p.remove(), 4600);
+}
+
+function startFloatingPhrases(){
+  if(floatInterval) return;
+  spawnPhrase();
+  floatInterval = setInterval(spawnPhrase, 1500);
+}
+
+function stopFloatingPhrases(){
+  clearInterval(floatInterval);
+  floatInterval = null;
+}
+
+/* ---------------- Música de fondo ---------------- */
+const audio = document.getElementById('bg-music');
+audio.loop = true;
+
+function tryPlayMusic(){
+  audio.play().catch(()=>{ /* el navegador la bloqueó hasta el próximo toque */ });
+}
+
+document.getElementById('startBtn').addEventListener('click', tryPlayMusic, { once:true });
+
+/* La música no tiene botón de mute: si el navegador la llega a pausar sola
+   (por ejemplo al cambiar de pestaña), la retomamos automáticamente. */
+audio.addEventListener('pause', ()=>{
+  setTimeout(tryPlayMusic, 300);
+});
+</script>
+
+</body>
+</html>
